@@ -26,7 +26,7 @@ const TarjetaPersonaje = ({ id, nombre, raza, clase, nivel, hp_actual, hp_maximo
   
   const [hpActual, setHpActual] = useState(hp_actual);
 
-  const recibirDanio = async (e) => {
+  const recibirDanio = async (e: any) => {
     e.stopPropagation();
     const nuevoHp = Math.max(0, hpActual - 10);
     setHpActual(nuevoHp); 
@@ -36,7 +36,7 @@ const TarjetaPersonaje = ({ id, nombre, raza, clase, nivel, hp_actual, hp_maximo
     if (error) console.error("Error al guardar daño:", error);
   };
 
-  const curarVida = async (e) => {
+  const curarVida = async (e: any) => {
     e.stopPropagation();
     const nuevoHp = Math.min(hp_maximo, hpActual + 10);
     setHpActual(nuevoHp);
@@ -169,7 +169,7 @@ const ListaDeAventureros = () => {
     }
   }
 
-  async function despedirPersonaje (idDelete, nombreDelete) {
+  async function despedirPersonaje (idDelete: any, nombreDelete: any) {
 
     const confirmacion = window.confirm(`Estas seguro de eliminar a ${nombreDelete} de la party? Esta acción no se puede deshacer.`);
 
@@ -259,25 +259,12 @@ const ListaDeAventureros = () => {
       <div className='grid gap-4 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 p-4 pt-8' >
 
         {/* 3. Abrimos llaves {} para avisarle a React que vamos a escribir JavaScript adentro del HTML */}
-        {party.map(({ id, nombre, raza, clase, nivel, hp_actual, hp_maximo, imagen, armadura, iniciativa, velocidad }) => (
-
-          // 4. Por cada personaje, devolvemos nuestra etiqueta visual
+        {party.map((p) => (
           <TarjetaPersonaje 
-              key={id} 
-              id={id}
-              nombre={nombre} 
-              raza={raza}       
-              clase={clase} 
-              nivel={nivel} 
-              hp_actual={hp_actual} 
-              hp_maximo={hp_maximo} 
-              imagen={imagen}
-              armadura={armadura}
-              iniciativa={iniciativa}
-              velocidad={velocidad}
-              onDespedir={() => despedirPersonaje(id, nombre)} 
-            />
-          
+            key={p.id} 
+            {...p} // Esto pasa id, nombre, raza, clase, nivel, hp_actual, hp_maximo, imagen, armadura, iniciativa, velocidad, atributos
+            onDespedir={() => despedirPersonaje(p.id, p.nombre)} 
+          />
         ))}
       </div>
     </div>

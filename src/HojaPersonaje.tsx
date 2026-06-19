@@ -24,7 +24,7 @@ export default function HojaPersonaje() {
   }, [id]);
 
   // --- NUEVAS FUNCIONES DE JSONB ---
-  const guardarAtributo = async (e: React.FormEvent) => {
+  const guardarAtributo = async (e: any) => {
     e.preventDefault();
     if (!nuevoAtributo.nombre || !nuevoAtributo.valor || !personaje) return;
 
