@@ -17,7 +17,7 @@ export interface Personaje {
   armadura: number;
   iniciativa: number;
   velocidad: string;
-  atributos: Record<string, any>;
+  atributos?: Record<string, any>;
   onDespedir: () => void;
 }
 
@@ -129,7 +129,7 @@ const ListaDeAventureros = () => {
     velocidad: ''    
   });
 
-  const manejarCambio = (e) => {
+  const manejarCambio = (e: any) => {
     const { name, value } = e.target;
     
     setNuevoPersonaje((estadoAnterior) => ({
@@ -140,7 +140,7 @@ const ListaDeAventureros = () => {
     }));
   };  
 
-  async function enviarPersonaje (e) {
+  async function enviarPersonaje (e: any) {
     e.preventDefault();
 
     const personajeCompleto = {

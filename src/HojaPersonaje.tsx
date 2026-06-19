@@ -59,7 +59,7 @@ export default function HojaPersonaje() {
 
   const [dadoElegido, setDadoElegido] = useState(20);
 
-  const [resultadoDado, setResultadoDado] = useState(null);
+  const [resultadoDado, setResultadoDado] = useState<number | null>(null);
 
   const [girando, setGirando] = useState(false);
 
